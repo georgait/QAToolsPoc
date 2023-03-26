@@ -2,7 +2,7 @@
 
 public interface IActor
 {
-    public string Name { get; }
+    string Name { get; }
     IReadOnlyCollection<IAbility> Abilities { get; }
 
     IAbility HasTheAbilityTo(IAbility ability);

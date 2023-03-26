@@ -27,3 +27,55 @@ Overall, abilities play a crucial role in the Screenplay Pattern as they enable 
 An action is a specific task or operation that an actor can perform on the application being tested, using the abilities that the actor possesses. An action is typically represented as a class that defines the steps or interactions required to complete the task.
 While an ability defines what an actor can do, an action defines what an actor actually does with that ability. Actions are the building blocks of test scripts in the Screenplay Pattern, and they help to separate the details of how an action is performed from the overall test logic. By defining actions as separate classes, they can be reused across different test scripts and make it easier to maintain the tests as the application changes.
 Overall, actions work in conjunction with abilities to allow actors to perform specific tasks on the application, and help to make the test scripts more modular and reusable.
+
+## The POC
+
+We start with the base ability class named `BrowseTheWeb`. We initialize Playwright here and assign that ability to our actor. Next, we have the `Actor` class. 
+The actor has its own abilities (such as BrowseTheWeb) and can interact with page elements, as well as request anything related to the page.
+The method used to interact with a page element is called `Task WhoAttemptsTo(ITask task)`. It takes an `ITask` as an argument and returns a `Task`.
+The `ITask` is an interface with one method, `Task PerformTaskAsyncAs(IActor actor)`. 
+So, in a step definition, one could use the actor to enter some value on a locator like this:
+
+```
+await actor.WhoAttemptsTo(Enter.TheValue(text).Using(TopNavBar.SearchDocs));
+```
+
+Here, we need to clarify the usage of `Using(Func<IPage, ILocator> locationAction)`. To take advantage of Playwright's built-in selector methods, 
+we use a page object that is a static class, for example: 
+```
+public static class TopNavBar 
+{
+    public static ILocator SearchDocs(IPage page)
+    {
+        return page.GetByPlaceholder("Search docs");
+    }
+}
+```
+The `Using` method takes as an argument a `Func` with the same signature.
+
+Similarly, we can query information for the page that is under test. For this to work, we use the other method of actor:
+
+```
+Task<T> WhoAsksFor<T>(IQuestion<T> question) where T : class
+```
+
+Then, we can use assertions like this:
+
+```
+var text = await actor.WhoAsksFor(TheText.OfLocator().Using(TraceViewer.CliCommand));
+Assert.AreEqual(command, text);
+```
+
+Of course, we can also use the "raw" `Func` like this:
+
+```
+.Using(page =>
+{
+    return page.GetByRole(AriaRole.Code).Filter(new() { HasText = "your-text" }).First;
+})
+
+```
+
+### Disclaimer
+
+This is just a POC and is not meant to be used as is in a real testing context. So there is definitely room for improvement.

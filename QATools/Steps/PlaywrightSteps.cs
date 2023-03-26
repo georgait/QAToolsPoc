@@ -42,7 +42,15 @@ public class PlaywrightSteps
     [Then(@"(.*) asserts that the viewing trace cli command is ""([^""]*)""")]
     public async Task ThenGeorgeAssertsThatTheViewingTraceCliCommandIs(IActor actor, string command)
     {
-        var text = await actor.WhoAsksFor(TheText.OfLocator().Using(TraceViewer.CliCommand));
+        // 1. With Page object
+        //var text = await actor.WhoAsksFor(TheText.OfLocator().Using(TraceViewer.CliCommand));
+        
+        // 2. With Func
+        var text = await actor.WhoAsksFor(TheText.OfLocator().Using(page =>
+        {
+            return page.GetByRole(AriaRole.Code).Filter(new() { HasText = command }).First;
+        }));        
+        
         Assert.AreEqual(command, text);
     }
 

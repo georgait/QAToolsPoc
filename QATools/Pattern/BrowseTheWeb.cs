@@ -101,7 +101,8 @@ public sealed class BrowseTheWeb : IAbility
             await _ctx.DisposeAsync();
         }
         
-        if(_browser is not null) await _browser.DisposeAsync();
+        if(_browser is not null) 
+            await _browser.DisposeAsync();
 
         _playwright!?.Dispose();
     }

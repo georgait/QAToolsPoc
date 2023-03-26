@@ -1,6 +1,4 @@
-﻿using QATools.Questions;
-
-namespace ScreenPlaywright.Steps;
+﻿namespace QATools.Steps;
 
 [Binding]
 public class PlaywrightSteps 

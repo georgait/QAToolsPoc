@@ -12,4 +12,5 @@ global using NUnit.Framework.Interfaces;
 global using QATools.Config;
 global using QATools.Exceptions;
 global using QATools.Extensions;
+global using QATools.Questions;
 global using static Microsoft.Playwright.Assertions;

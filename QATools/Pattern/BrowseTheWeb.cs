@@ -149,33 +149,5 @@ public sealed class BrowseTheWeb : IAbility
                 Sources = true
             });
         }
-    }
-
-    //private class RunAndWaitForPopup : ITask, IAction<ITask>
-    //{
-    //    private Func<IPage, ILocator> _locationAction = default!;
-
-    //    RunAndWaitForPopup() { }
-
-    //    public static RunAndWaitForPopup For(string name)
-    //    {
-    //        return new RunAndWaitForPopup();
-    //    }
-
-    //    public ITask Using(Func<IPage, ILocator> locationAction)
-    //    {
-    //        _locationAction = locationAction;
-    //        return this;
-    //    }
-
-    //    public async Task PerformTaskAsyncAs(IActor actor)
-    //    {
-    //        var page = (As(actor) as BrowseTheWeb).GetCurrentPage();
-
-    //        //await (BrowseTheWeb.As(actor) as BrowseTheWeb).CreateInnerPageAsync(async () =>
-    //        //{
-
-    //        //});
-    //    }
-    //}
+    }   
 }

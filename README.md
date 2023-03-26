@@ -30,6 +30,23 @@ Overall, actions work in conjunction with abilities to allow actors to perform s
 
 ## The POC
 
+### Installation
+
+To run the POC, you will need to install the following prerequisites:
+1. Specflow plugin for VS:
+    a. Open Visual Studio.
+    b. Click on Tools > Extensions and Updates.
+    c. Click on the Online tab and search for SpecFlow for Visual Studio.
+    d. Click the Download button and follow the installation prompts.
+
+2. Playwright:
+
+    a. `dotnet add package Microsoft.Playwright`
+    b. `dotnet build`
+    c. `pwsh bin/Debug/netX/playwright.ps1 install`
+
+### Usage
+
 We start with the base ability class named `BrowseTheWeb`. We initialize Playwright here and assign that ability to our actor. Next, we have the `Actor` class. 
 The actor has its own abilities (such as BrowseTheWeb) and can interact with page elements, as well as request anything related to the page.
 The method used to interact with a page element is called `Task WhoAttemptsTo(ITask task)`. It takes an `ITask` as an argument and returns a `Task`.

@@ -1,6 +1,6 @@
 ﻿namespace QATools.Actions;
 
-public class Enter : ITask, IAction<ITask>
+public class Enter : ITask, ITarget<ITask>
 {
     private readonly string _value;
     private Func<IPage, ILocator> _locationAction = default!; 

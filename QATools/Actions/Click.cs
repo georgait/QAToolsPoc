@@ -1,6 +1,6 @@
 ﻿namespace QATools.Actions;
 
-public class Click : ITask, IAction<ITask>
+public class Click : ITask, ITarget<ITask>
 {
     private Func<IPage, ILocator> _locationAction = default!;
 

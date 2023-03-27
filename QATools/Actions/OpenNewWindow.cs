@@ -1,6 +1,6 @@
 ﻿namespace QATools.Actions;
 
-public class OpenNewWindow : ITask, IAction<ITask>
+public class OpenNewWindow : ITask, ITarget<ITask>
 {
     private readonly string _name;
     private Func<IPage, ILocator> _locationAction = default!;

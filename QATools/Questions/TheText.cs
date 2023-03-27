@@ -1,6 +1,6 @@
 ﻿namespace QATools.Questions;
 
-public class TheText : IQuestion<string>, IAction<IQuestion<string>>
+public class TheText : IQuestion<string>, ITarget<IQuestion<string>>
 {
     private Func<IPage, ILocator> _locationAction = default!;
 

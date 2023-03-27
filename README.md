@@ -34,6 +34,7 @@ Overall, actions work in conjunction with abilities to allow actors to perform s
 
 To run the POC, you will need to install the following prerequisites:
 1. Specflow plugin for VS:
+
     a. Open Visual Studio.
 
     b. Click on Tools > Extensions and Updates.

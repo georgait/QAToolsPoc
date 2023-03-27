@@ -12,7 +12,7 @@ public class PlaywrightSteps
             .AsActor(actor)
             .AsyncWith(Browsers.CHROMIUM, opt =>
             {
-                // options from appsettings.json
+                // options from appsettings.json (optional, default values are used if not provided)
             });
         
         await actor.WhoAttemptsTo(Navigate.To(Urls.DOC));

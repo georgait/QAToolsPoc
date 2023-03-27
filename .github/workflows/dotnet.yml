@@ -25,7 +25,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Install Browsers
-      run: pwsh QaTools/bin/Debug/net7.0/playwright.ps1 install --with-deps
+      run: pwsh QATools/bin/Debug/net7.0/playwright.ps1 install --with-deps
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload Artifacts
@@ -33,4 +33,4 @@ jobs:
       if: failure()
       with:
         name: trace-view
-        path: QaTools/bin/Debug/net7.0/trace.zip
+        path: QATools/bin/Debug/net7.0/trace.zip

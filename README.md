@@ -100,6 +100,9 @@ Of course, we can also use lambda like this:
 
 ```
 
+Last but not least, with SpecFlow in place, we use its bindings for `BeforeTestRun` and `AfterScenario`. Before the test run, we set up the configuration (appsettings.json), and after the scenario, we dispose all abilities of any actor. 
+It is important to note that we use `BoDi` as our DI container, which is the built-in DI container of SpecFlow.
+
 ### Disclaimer
 
 This is just a POC and is not meant to be used as is in a real testing context. So there is definitely room for improvement.

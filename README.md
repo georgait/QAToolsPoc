@@ -60,10 +60,10 @@ The `ITask` is an interface with one method, `Task PerformTaskAsyncAs(IActor act
 So, in a step definition, one could use the actor to enter some value on a locator like this:
 
 ```
-await actor.WhoAttemptsTo(Enter.TheValue(text).Using(TopNavBar.SearchDocs));
+await actor.WhoAttemptsTo(Enter.TheValue(text).UsingDynamicLocator(TopNavBar.SearchDocs));
 ```
 
-Here, we need to clarify the usage of `Using(Func<IPage, ILocator> locationAction)`. To take advantage of Playwright's built-in selector methods, 
+Here, we need to clarify the usage of `UsingDynamicLocator(Func<IPage, ILocator> locationAction)`. To take advantage of Playwright's built-in selector methods, 
 we use a page object that is a static class, for example: 
 ```
 public static class TopNavBar 
@@ -74,7 +74,7 @@ public static class TopNavBar
     }
 }
 ```
-The `Using` method takes as an argument a `Func` with the same signature as above.
+The `UsingDynamicLocator` method takes as an argument a `Func` with the same signature as above.
 
 Similarly, we can query information for the page that is under test. For this to work, we use the other method of actor:
 
@@ -85,14 +85,14 @@ Task<T> WhoAsksFor<T>(IQuestion<T> question) where T : class
 Then, we can use assertions like this:
 
 ```
-var text = await actor.WhoAsksFor(TheText.OfLocator().Using(TraceViewer.CliCommand));
+var text = await actor.WhoAsksFor(TheText.OfTarget().UsingDynamicLocator(TraceViewer.CliCommand));
 Assert.AreEqual(command, text);
 ```
 
 Of course, we can also use the "raw" `Func` like this:
 
 ```
-.Using(page =>
+.UsingDynamicLocator(page =>
 {
     return page.GetByRole(AriaRole.Code).Filter(new() { HasText = "your-text" }).First;
 })

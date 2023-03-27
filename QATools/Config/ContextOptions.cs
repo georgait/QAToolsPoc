@@ -13,5 +13,5 @@ public class ContextOptions
     public IEnumerable<string> BrowserTypes { get; set; } 
     public string RecordVideoDir { get; set; } = null;
     public bool TraceViewEnabledOnFailure { get; set; } = true;
-    public bool Headless { get; set; } = false;
+    public bool Headless { get; set; } = true;
 }

@@ -19,7 +19,8 @@ public class OnStage
         var exists = _container.TryResolve<IActor>(actorName, out var actor);
         if (!exists)
         {
-            _container.RegisterInstanceAs(new Actor(actorName), actorName);
+            actor = new Actor(actorName);
+            _container.RegisterInstanceAs(actor, actorName);
         }
         return actor!;
     }

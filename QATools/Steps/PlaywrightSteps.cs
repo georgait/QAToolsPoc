@@ -46,7 +46,7 @@ public class PlaywrightSteps
         // 2. With Func
         var text = await actor.WhoAsksFor(TheText.OfTarget().UsingDynamicLocator(page =>
         {
-            return page.GetByRole(AriaRole.Code).Filter(new() { HasText = command + "a" }).First;
+            return page.GetByRole(AriaRole.Code).Filter(new() { HasText = command }).First;
         }));        
         
         Assert.AreEqual(command, text);

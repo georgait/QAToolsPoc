@@ -73,7 +73,7 @@ public static class TopNavBar
     }
 }
 ```
-The `Using` method takes as an argument a `Func` with the same signature.
+The `Using` method takes as an argument a `Func` with the same signature as above.
 
 Similarly, we can query information for the page that is under test. For this to work, we use the other method of actor:
 

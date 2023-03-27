@@ -6,9 +6,9 @@ public class TheText : IQuestion<string>, ITarget<IQuestion<string>>
 
     TheText() { }
 
-    public static TheText OfLocator() => new();
+    public static TheText OfTarget() => new();
 
-    public IQuestion<string> Using(Func<IPage, ILocator> locationAction)
+    public IQuestion<string> UsingDynamicLocator(Func<IPage, ILocator> locationAction)
     {
         _locationAction = locationAction;
         return this;

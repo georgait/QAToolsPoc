@@ -6,9 +6,9 @@ public class Click : ITask, ITarget<ITask>
 
     Click() { }
 
-    public static Click OnLocator() => new();
+    public static Click OnTarget() => new();
 
-    public ITask Using(Func<IPage, ILocator> locationAction)
+    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
     {
         _locationAction = locationAction;
         return this;

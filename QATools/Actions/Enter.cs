@@ -12,7 +12,7 @@ public class Enter : ITask, ITarget<ITask>
 
     public static Enter TheValue(string value) => new(value);
     
-    public ITask Using(Func<IPage, ILocator> locationAction)
+    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
     {
         _locationAction = locationAction;
         return this;

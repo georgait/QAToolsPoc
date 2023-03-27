@@ -12,7 +12,7 @@ public class OpenNewWindow : ITask, ITarget<ITask>
 
     public static OpenNewWindow Named(string name) => new(name);
 
-    public ITask Using(Func<IPage, ILocator> locationAction)
+    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
     {
         _locationAction = locationAction;
         return this;

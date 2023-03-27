@@ -57,7 +57,7 @@ We start with the base ability class named `BrowseTheWeb`. We initialize Playwri
 The actor has its own abilities (such as BrowseTheWeb) and can interact with page elements, as well as request anything related to the page.
 The method used to interact with a page element is called `Task WhoAttemptsTo(ITask task)`. It takes an `ITask` as an argument and returns a `Task`.
 The `ITask` is an interface with one method, `Task PerformTaskAsyncAs(IActor actor)`. 
-So, in a step definition, one could use the actor to enter some value on a locator like this:
+So, in a step definition, one could use the actor to enter some value on a locator like below:
 
 ```
 await actor.WhoAttemptsTo(Enter.TheValue(text).UsingDynamicLocator(TopNavBar.SearchDocs));
@@ -74,7 +74,8 @@ public static class TopNavBar
     }
 }
 ```
-The `UsingDynamicLocator` method takes as an argument a `Func` with the same signature as above.
+The `UsingDynamicLocator` method requires a `Func` parameter with the same method signature as the aforementioned method. By utilizing the "Page object," 
+we adhere to the Single Responsibility Principle, as the page object is responsible for providing the ability to retrieve a locator and nothing else.
 
 Similarly, we can query information for the page that is under test. For this to work, we use the other method of actor:
 
@@ -89,7 +90,7 @@ var text = await actor.WhoAsksFor(TheText.OfTarget().UsingDynamicLocator(TraceVi
 Assert.AreEqual(command, text);
 ```
 
-Of course, we can also use the "raw" `Func` like this:
+Of course, we can also use lambda like this:
 
 ```
 .UsingDynamicLocator(page =>

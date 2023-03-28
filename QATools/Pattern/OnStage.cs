@@ -4,7 +4,7 @@ public class OnStage
 {
     private readonly IObjectContainer _container;
 
-    OnStage(IObjectContainer container)
+    public OnStage(IObjectContainer container)
     {
         _container = container;
     }

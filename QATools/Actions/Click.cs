@@ -1,23 +1,22 @@
 ﻿namespace QATools.Actions;
 
-public class Click : ITask, ITarget<ITask>
+public class Click : ITask
 {
-    private Func<IPage, ILocator> _locationAction = default!;
+    private readonly Func<IPage, ILocator> _locate;
 
-    Click() { }
-
-    public static Click OnTarget() => new();
-
-    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
+    public Click(Func<IPage, ILocator> locationAction)
     {
-        _locationAction = locationAction;
-        return this;
+        _locate = locationAction;
+    }
+
+    public static Click OnTarget(Func<IPage, ILocator> locate)
+    {
+        return new(locate);
     }
 
     public async Task PerformTaskAsyncAs(IActor actor)
     {
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
-
-        await _locationAction(page).ClickAsync();
+        await Target.ThePage(page).GetLocator(_locate).ClickAsync();
     }
 }

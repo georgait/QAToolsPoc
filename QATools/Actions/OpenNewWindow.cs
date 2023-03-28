@@ -1,20 +1,20 @@
 ﻿namespace QATools.Actions;
 
-public class OpenNewWindow : ITask, ITarget<ITask>
+public class OpenNewWindow : ITask
 {
     private readonly string _name;
-    private Func<IPage, ILocator> _locationAction = default!;
+    private Func<IPage, ILocator> _locate;
 
-    OpenNewWindow(string name)
+    public OpenNewWindow(string name)
     {
         _name = name;
     }
 
     public static OpenNewWindow Named(string name) => new(name);
 
-    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
+    public OpenNewWindow UsingTarget(Func<IPage, ILocator> locate)
     {
-        _locationAction = locationAction;
+        _locate = locate;
         return this;
     }
 
@@ -25,7 +25,7 @@ public class OpenNewWindow : ITask, ITarget<ITask>
         var basePage = browseTheWeb.GetCurrentPage();
         await browseTheWeb.WithChildPage(_name, async () =>
         {
-            await _locationAction(basePage).ClickAsync();
+            await Target.ThePage(basePage).GetLocator(_locate).ClickAsync();
         });
     }
 }

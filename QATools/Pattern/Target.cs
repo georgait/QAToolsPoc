@@ -1,4 +1,4 @@
-﻿namespace QATools.Actions;
+﻿namespace QATools.Pattern;
 
 public class Target
 {

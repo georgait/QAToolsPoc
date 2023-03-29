@@ -44,7 +44,7 @@ public class PlaywrightSteps
     public async Task ThenGeorgeAssertsThatTheViewingTraceCliCommandIs(IActor actor, string command)
     {
         // 1. With Page object
-        //var text = await actor.WhoAsksFor(TheBetterText.OfTarget(TraceViewer.CliCommand));
+        //var text1 = await actor.WhoAsksFor(TheText.OfTarget(TraceViewer.CliCommand));
 
         // 2. With Func
         var text = await actor.WhoAsksFor(TheText.OfTarget(page =>

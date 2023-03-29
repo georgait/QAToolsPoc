@@ -1,20 +1,20 @@
 ﻿namespace QATools.Actions;
 
-public class Enter : ITask, ITarget<ITask>
+public class Enter : ITask
 {
-    private readonly string _value;
-    private Func<IPage, ILocator> _locationAction = default!; 
+    private readonly Func<IPage, ILocator> _locate;
+    private string _value;
 
-    private Enter(string value)
+    public Enter(Func<IPage, ILocator> locationAction)
     {
-        _value = value;
+        _locate = locationAction;
     }
 
-    public static Enter TheValue(string value) => new(value);
-    
-    public ITask UsingDynamicLocator(Func<IPage, ILocator> locationAction)
+    public static Enter OnTarget(Func<IPage, ILocator> locate) => new(locate);
+
+    public Enter TheValue(string value)
     {
-        _locationAction = locationAction;
+        _value = value;
         return this;
     }
 
@@ -23,8 +23,8 @@ public class Enter : ITask, ITarget<ITask>
         // #1 - Page
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
 
-        // #2 - Locator 
-        var locator = _locationAction(page);
+        // #2 - Locator         
+        var locator = Target.ThePage(page).GetLocator(_locate);
 
         // #3 - Action
         await locator.FillAsync(_value);

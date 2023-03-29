@@ -1,22 +1,23 @@
 ﻿namespace QATools.Questions;
 
-public class TheText : IQuestion<string>, ITarget<IQuestion<string>>
+public class TheText : IQuestion<string>
 {
-    private Func<IPage, ILocator> _locationAction = default!;
+    private readonly Func<IPage, ILocator> _locate;
 
-    TheText() { }
-
-    public static TheText OfTarget() => new();
-
-    public IQuestion<string> UsingDynamicLocator(Func<IPage, ILocator> locationAction)
+    public TheText(Func<IPage, ILocator> locate)
     {
-        _locationAction = locationAction;
-        return this;
+        _locate = locate;
     }
+
+    public static TheText OfTarget(Func<IPage, ILocator> locate) => new(locate);
 
     public async Task<string> AskAsyncAs(IActor actor)
     {
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
-        return await _locationAction(page).TextContentAsync();
+        
+        return await Target
+            .ThePage(page)
+            .GetLocator(_locate)
+            .TextContentAsync();
     }
 }

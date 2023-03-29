@@ -12,7 +12,7 @@ public sealed class BrowseTheWeb : IAbility
 
     public IActor Actor { get; private set; }
 
-    BrowseTheWeb()
+    public BrowseTheWeb()
     {
         _contextOptions = new();
         _innerPages = new Dictionary<string, IPage>();

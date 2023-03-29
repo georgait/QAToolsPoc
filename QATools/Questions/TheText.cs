@@ -4,9 +4,9 @@ public class TheText : IQuestion<string>
 {
     private readonly Func<IPage, ILocator> _locate;
 
-    public TheText(Func<IPage, ILocator> _locate)
+    public TheText(Func<IPage, ILocator> locate)
     {
-        this._locate = _locate;
+        _locate = locate;
     }
 
     public static TheText OfTarget(Func<IPage, ILocator> locate) => new(locate);

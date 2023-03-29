@@ -13,8 +13,6 @@ public class PlaywrightSteps
             .AsyncWith(Browsers.CHROMIUM, opt =>
             {
                 // options from appsettings.json (optional, default values are used if not provided)
-                opt.Headless = false;
-                opt.TraceViewEnabledOnFailure = false;
             });
         
         await actor.WhoAttemptsTo(Navigate.To(Urls.DOC));

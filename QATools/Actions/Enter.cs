@@ -24,7 +24,7 @@ public class Enter : ITask
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
 
         // #2 - Locator         
-        var locator = Target.ThePage(page).GetLocator(_locate);
+        var locator = Target.The(page).AndLocate(_locate);
 
         // #3 - Action
         await locator.FillAsync(_value);

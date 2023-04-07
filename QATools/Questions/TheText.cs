@@ -16,8 +16,8 @@ public class TheText : IQuestion<string>
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
         
         return await Target
-            .ThePage(page)
-            .GetLocator(_locate)
+            .The(page)
+            .AndLocate(_locate)
             .TextContentAsync();
     }
 }

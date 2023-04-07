@@ -17,6 +17,6 @@ public class Click : ITask
     public async Task PerformTaskAsyncAs(IActor actor)
     {
         var page = (BrowseTheWeb.As(actor) as BrowseTheWeb).GetCurrentPage();
-        await Target.ThePage(page).GetLocator(_locate).ClickAsync();
+        await Target.The(page).AndLocate(_locate).ClickAsync();
     }
 }

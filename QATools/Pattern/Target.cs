@@ -9,7 +9,7 @@ public class Target
         _page = page;
     }
 
-    public static Target ThePage(IPage page) => new(page);
+    public static Target The(IPage page) => new(page);
 
-    public ILocator GetLocator(Func<IPage, ILocator> locate) => locate(_page);
+    public ILocator AndLocate(Func<IPage, ILocator> locate) => locate(_page);
 }

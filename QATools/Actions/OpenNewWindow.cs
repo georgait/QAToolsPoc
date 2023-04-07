@@ -25,7 +25,7 @@ public class OpenNewWindow : ITask
         var basePage = browseTheWeb.GetCurrentPage();
         await browseTheWeb.WithChildPage(_name, async () =>
         {
-            await Target.ThePage(basePage).GetLocator(_locate).ClickAsync();
+            await Target.The(basePage).AndLocate(_locate).ClickAsync();
         });
     }
 }

@@ -83,14 +83,14 @@ Similarly, we can query information for the page that is under test. For this to
 Task<T> WhoAsksFor<T>(IQuestion<T> question) where T : class
 ```
 
-Then, we can use assertions like this:
+Then, we can use assertions like below:
 
 ```
 var text = await actor.WhoAsksFor(TheText.OfTarget(TraceViewer.CliCommand));
 Assert.AreEqual(command, text);
 ```
 
-Of course, we can also use lambda like this:
+Of course, we can also use lambda like below:
 
 ```
 .OfTarget(page =>

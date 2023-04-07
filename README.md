@@ -63,7 +63,7 @@ So, in a step definition, one could use the actor to enter some value on a locat
 await actor.WhoAttemptsTo(Enter.OnTarget(TopNavBar.SearchDocs).TheValue(text));
 ```
 
-Here, we need to clarify the usage of `UsingDynamicLocator(Func<IPage, ILocator> locationAction)`. To take advantage of Playwright's built-in selector methods, 
+Here, we need to clarify the usage of `OnTarget(Func<IPage, ILocator> locationAction)`. To take advantage of Playwright's built-in selector methods, 
 we use a page object that is a static class, for example: 
 ```
 public static class TopNavBar 

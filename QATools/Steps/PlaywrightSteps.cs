@@ -1,4 +1,6 @@
-﻿namespace QATools.Steps;
+﻿using NUnit.Framework.Constraints;
+
+namespace QATools.Steps;
 
 [Binding]
 public class PlaywrightSteps 
@@ -9,12 +11,12 @@ public class PlaywrightSteps
     {
         await BrowseTheWeb
             .WithPlaywright()
-            .AsActor(actor)
+            .AsActor(actor)            
             .AsyncWith(Browsers.CHROMIUM, opt =>
             {
                 // options from appsettings.json (optional, default values are used if not provided)
             });
-        
+
         await actor.WhoAttemptsTo(Navigate.To(Urls.DOC));
     }
 
@@ -50,7 +52,7 @@ public class PlaywrightSteps
             return page.GetByRole(AriaRole.Code).Filter(new() { HasText = command }).First;
         }));        
         
-        Assert.AreEqual(command, text);
+        Assert.That(text == command, Is.True);
     }
 
     [Then(@"(.*) navigates to trace viewer static website")]

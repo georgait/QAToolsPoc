@@ -1,6 +1,4 @@
-﻿using NUnit.Framework.Constraints;
-
-namespace QATools.Steps;
+﻿namespace QATools.Steps;
 
 [Binding]
 public class PlaywrightSteps 

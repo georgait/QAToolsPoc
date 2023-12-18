@@ -19,13 +19,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Install Browsers
-      run: pwsh QATools/bin/Debug/net7.0/playwright.ps1 install --with-deps
+      run: pwsh QATools/bin/Debug/net8.0/playwright.ps1 install --with-deps
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload Artifacts
@@ -33,4 +33,4 @@ jobs:
       if: failure()
       with:
         name: trace-view
-        path: QATools/bin/Debug/net7.0/trace.zip
+        path: QATools/bin/Debug/net8.0/trace.zip
